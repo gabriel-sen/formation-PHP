@@ -1,9 +1,28 @@
 <?php
-    // Imaginons que c'est la BDD
-    $logindValide = 'Gab';
-    $paswordValide = '123';
+    // Le résultat attendu
+    $loginValide = 'Gab';
+    $motDePasseValide = '123';
+    //les éléments de dcondition
+    $mauvaisMdpOuId = FALSE;
+    $pasunMotDePasse = FALSE;
 
-?>
+    // On teste si c'est ben renseigné
+    if (isset($_POST['input_userid']) && isset($_POST['input_password'])) {
+        // on teste si le MDP et si le login correspond bien.
+        if (($_POST['input_password'] == $motDePasseValide) && ($_POST['input_userid'] == $loginValide)) {
+            // on initialise la session seulement si l'userID et le password sont renseigné
+            session_start();
+            $_SESSION['userid'] = $_POST['input_userid'];
+
+            // On redirige l'utilisateur vers la page
+            header('location: logged.php');
+        } else {
+            $mauvaisMdpOuId = TRUE;
+        }
+    }
+
+    ?>
+
 
 <!doctype html>
 <html lang="fr">
@@ -23,29 +42,16 @@
         <label for='mail'>Login</label> <br>
         <input type='text' id='mail' placeholder='ID utilisateur' name='input_userid' required> <br>
         <br>
-        <label for='password'>Mot de passe</label> <br>
-        <input type='password' id='mdp' name='input_password' required> <br>
+        <label for='motDePasse'>Mot de passe</label> <br>
+        <input type='password' id='motDePasse' name='input_password' required> <br>
         <br>
         <button type='submit'>valider</button>
     </form>
 
     <?php
-    // On teste si c'est ben renseigné
-    if (isset($_POST['input_userid']) && isset($_POST['input_password'])) {
-        // on teste si le MDP et si le login correspond bien.
-        if (($_POST['input_password'] == $paswordValide) && ($_POST['input_userid'] == $logindValide)) {
-            // on initialise la session seulement si l'userID et le password sont renseigné
-            session_start();
-            $_SESSION['userid'] = $_POST['input_userid'];
-            $_SESSION['passworld'] = $_POST['input_password'];
-
-            // On redirige l'utilisateur vers la page?
-            header('location: logged.php');
-        } else {
-            echo 'mot de passe ou  User Id invalide (fouillez dans les variables)';
+        if ($mauvaisMdpOuId == TRUE) {
+            echo 'Mauvais mot de passe ou mauvais ID';
         }
-    }
-
     ?>
 
 </body>

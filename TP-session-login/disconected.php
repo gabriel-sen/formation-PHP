@@ -1,6 +1,7 @@
 <?php
 // On termine la session AVANT d'écrire du code HTML
-session_destroy()
+session_start();
+session_destroy();
 ?>
 
 
