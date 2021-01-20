@@ -1,13 +1,11 @@
-<menu style='display: flex; justify-content: space-between; background-color: #aeaeae; padding: 2rem;'>
-    <link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
-    <div class="logo">
-        <span class='ec ec-sparkling-heart'></span>
+
+<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
+<!-- Image and text -->
+<nav class='navbar navbar-light bg-light'>
+    <div class='container-fluid'>
+        <a class='navbar-brand' href='#'>
+            <span class='ec ec-sparkling-heart'></span>
+            Mon super formulaire
+        </a>
     </div>
-    <div class="content" style="width: 100%;">
-        <ul style='display: flex; justify-content: space-between'>
-            <li><a href="">Ceci est un faux lien</a></li>
-            <li><a href="">Ceci est un faux lien</a></li>
-            <li><a href="">Ceci est un faux lien</a></li>
-        </ul>
-    </div>
-</menu>
+</nav>

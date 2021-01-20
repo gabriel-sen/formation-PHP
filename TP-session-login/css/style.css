@@ -1,0 +1,9 @@
+section.section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:70vh;
+}
+body{
+    margin: 0;
+}
