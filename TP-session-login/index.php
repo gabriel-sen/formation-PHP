@@ -6,25 +6,30 @@
     $mauvaisId = FALSE;
     $pasunMotDePasse = FALSE;
 
-    // On teste si c'est ben renseigné
-    if (isset($_POST['input_userid']) && isset($_POST['input_password'])) {
-        // on teste si le login est valid
-        if ($_POST['input_userid'] == $loginValide) {
-            // on initialise la session seulement si le login est valid
-            session_start();
-            $_SESSION['userid'] = $_POST['input_userid'];
-        } else {
-            $mauvaisId = TRUE; // si le UserID est pas bon
-        }
-        //mauvais mot de passe
-        if (($_POST['input_password'] == $motDePasseValide)) {
-            // On redirige l'utilisateur vers la page si le MDP est bon
-            header('location: logged.php');
-        } else {
-            $pasunMotDePasse = TRUE; // si le UserID est pas bon
+    if(!empty($_POST)){
+        $motDePasse = $_POST['input_password'];
+        $idUtilisateur = strip_tags($_POST['input_userid']);
+        // On teste si c'est ben renseigné
+        if (isset($idUtilisateur) && isset($motDePasse)) {
+            // on teste si le login est valid
+            if ($idUtilisateur == $loginValide) {
+                // on initialise la session seulement si le login est valid
+                session_start();
+                $_SESSION['userid'] = $idUtilisateur;
+            } else {
+                $mauvaisId = TRUE; // si le UserID est pas bon
+            }
+            //mauvais mot de passe
+            if (($motDePasse == $motDePasseValide)) {
+                // On redirige l'utilisateur vers la page si le MDP est bon
+                header('location: logged.php');
+            } else {
+                $pasunMotDePasse = TRUE; // si le UserID est pas bon
+            }
         }
 
     }
+
 
     ?>
 
