@@ -1,10 +1,12 @@
 <?php
     //connection BDD
     require_once("database.php");
+
+
     $idUtilisateur = "";
     $motDePasse = "";
 
-    if(!empty($_POST)){
+    if(!empty($_POST)) {
         $idUtilisateur = strip_tags($_POST['input_userid']);
         $motDePasse = $_POST['input_password'];
         // on initialise la session seulement si le login est valid
@@ -21,6 +23,15 @@
         $stmt->execute();
 
     }
+    // TEST
+    // on teste les réponses SQL
+    // on stock dans une variables réponse une demande de requette QUERY SELECT FORM la table users
+    $reponse = $pdo->query('SELECT * FROM users');
+    while ($donnes = $reponse->fetch()) {
+        $return = $donnes['email'];
+        var_dump($return);
+    }
+
 ?>
 
 
@@ -38,7 +49,6 @@
 </head>
 
 <body>
-
     <?php include('menu.php') ?>
     <section class="section">
         <div class='card w-50'>
